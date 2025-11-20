@@ -1,9 +1,9 @@
 import pandas as pd
-from models.amostra import Amostra
-from models.analise import Analise
-from models.interpretador import Interpretador
-from models.visualizador import Visualizador
-from utils.exceptions import ExcecaoAmostraInvalida
+from src.models.amostra import Amostra
+from src.models.analise import Analise
+from src.models.interpretador import Interpretador
+from src.models.visualizador import Visualizador
+from src.utils.exceptions import ExcecaoAmostraInvalida
 
 def main():
     print("=== BioScan – Sistema de Análise Científica ===")
