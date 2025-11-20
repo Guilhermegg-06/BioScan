@@ -1,15 +1,15 @@
-# src/models/amostra.py
-from src.utils.exceptions import ExcecaoAmostraInvalida
+from dataclasses import dataclass
 
+@dataclass
 class Amostra:
-    def __init__(self, id, glicose, proteina, colesterol):
-        try:
-            self.id = int(id)
-            self.glicose = float(glicose)
-            self.proteina = float(proteina)
-            self.colesterol = float(colesterol)
-        except Exception:
-            raise ExcecaoAmostraInvalida("Valores inválidos na amostra.")
+    id: int
+    idade: int
+    sexo: str
+    altura_cm: float
+    peso_kg: float
+    glucose_mg_dL: float
+    colesterol_mg_dL: float
 
-    def __repr__(self):
-        return f"Amostra(ID={self.id}, G={self.glicose}, P={self.proteina}, C={self.colesterol})"
+    def imc(self):
+        h = self.altura_cm / 100
+        return self.peso_kg / (h * h)

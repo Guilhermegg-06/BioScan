@@ -1,16 +1,24 @@
-# src/models/interpretador.py
-class Interpretador:
-    def __init__(self, amostras):
-        self.amostras = amostras
+from .amostra import Amostra
 
-    def interpretar(self):
+class Interpretador:
+    def __init__(self):
+        self.limite_glucose = 125
+        self.limite_colesterol = 230
+
+    def classificar(self, amostra: Amostra):
+        if amostra.glucose_mg_dL > self.limite_glucose:
+            return "alterado"
+
+        if amostra.colesterol_mg_dL > self.limite_colesterol:
+            return "alterado"
+
+        return "normal"
+
+    def classificar_lista(self, amostras):
         resultados = []
-        for a in self.amostras:
-            if a.glicose > 125:
-                status = "ALTO RISCO"
-            elif a.glicose < 70:
-                status = "BAIXO RISCO"
-            else:
-                status = "NORMAL"
-            resultados.append((a.id, status))
+        for a in amostras:
+            resultados.append({
+                "id": a.id,
+                "resultado": self.classificar(a)
+            })
         return resultados
